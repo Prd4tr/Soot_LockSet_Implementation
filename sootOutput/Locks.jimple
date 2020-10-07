@@ -1,0 +1,134 @@
+public class Locks extends java.lang.Object
+{
+    public int c;
+    private final java.lang.Object obj1;
+    private final java.lang.Object obj2;
+
+    public void <init>()
+    {
+        Locks r0;
+        java.lang.Object $r1, $r2;
+
+        r0 := @this: Locks;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = new java.lang.Object;
+
+        specialinvoke $r1.<java.lang.Object: void <init>()>();
+
+        r0.<Locks: java.lang.Object obj1> = $r1;
+
+        $r2 = new java.lang.Object;
+
+        specialinvoke $r2.<java.lang.Object: void <init>()>();
+
+        r0.<Locks: java.lang.Object obj2> = $r2;
+
+        return;
+    }
+
+    public void method2(int)
+    {
+        Locks r0, $r3;
+        java.lang.Object $r1;
+        java.lang.Throwable $r5;
+        int i0;
+
+        r0 := @this: Locks;
+
+        i0 := @parameter0: int;
+
+        $r1 = r0.<Locks: java.lang.Object obj2>;
+
+        entermonitor $r1;
+
+     label1:
+        r0.<Locks: int c> = 3;
+
+        $r3 = new Locks;
+
+        specialinvoke $r3.<Locks: void <init>()>();
+
+        exitmonitor $r1;
+
+     label2:
+        goto label5;
+
+     label3:
+        $r5 := @caughtexception;
+
+        exitmonitor $r1;
+
+     label4:
+        throw $r5;
+
+     label5:
+        return;
+
+        catch java.lang.Throwable from label1 to label2 with label3;
+        catch java.lang.Throwable from label3 to label4 with label3;
+    }
+
+    public void method1(int)
+    {
+        Locks r0, $r3;
+        java.lang.Object $r1;
+        int i0;
+        java.lang.Throwable $r5;
+
+        r0 := @this: Locks;
+
+        i0 := @parameter0: int;
+
+        $r1 = r0.<Locks: java.lang.Object obj1>;
+
+        entermonitor $r1;
+
+     label1:
+        r0.<Locks: int c> = 2;
+
+        r0.<Locks: int c> = i0;
+
+        $r3 = new Locks;
+
+        specialinvoke $r3.<Locks: void <init>()>();
+
+        virtualinvoke $r3.<Locks: void method2(int)>(i0);
+
+        exitmonitor $r1;
+
+     label2:
+        goto label5;
+
+     label3:
+        $r5 := @caughtexception;
+
+        exitmonitor $r1;
+
+     label4:
+        throw $r5;
+
+     label5:
+        return;
+
+        catch java.lang.Throwable from label1 to label2 with label3;
+        catch java.lang.Throwable from label3 to label4 with label3;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        Locks $r0;
+        java.lang.String[] r2;
+
+        r2 := @parameter0: java.lang.String[];
+
+        $r0 = new Locks;
+
+        specialinvoke $r0.<Locks: void <init>()>();
+
+        virtualinvoke $r0.<Locks: void method1(int)>(10);
+
+        return;
+    }
+}
